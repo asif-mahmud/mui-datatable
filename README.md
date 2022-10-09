@@ -5,13 +5,13 @@ A simple but customizable datatable toolkit built with
 
 # Roadmap
 
-- [X] Render static data
-- [X] Allow custom renderring option for table headers
-- [X] Allow picking or computing property value
-- [X] Allow transforming collected or computed property value
-- [X] Allow custom rendering option for table cells
-- [X] Allow customizing header cell and value cell properties
-- [ ] Add column visibility controlling options
+- [x] Render static data
+- [x] Allow custom renderring option for table headers
+- [x] Allow picking or computing property value
+- [x] Allow transforming collected or computed property value
+- [x] Allow custom rendering option for table cells
+- [x] Allow customizing header cell and value cell properties
+- [x] Add column visibility controlling options
 - [ ] Add search option
 - [ ] Add sort option
 - [ ] Add filterring option
