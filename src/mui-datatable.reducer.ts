@@ -47,6 +47,11 @@ const MuiDatatableReducer: Reducer<
       return {
         ...state,
         columns: payload?.columns || [],
+      };
+    }
+    case MuiDatatableAction.UpdateColumnVisiblityChoices: {
+      return {
+        ...state,
         columnVisibilityChoices: payload?.columnVisibilityChoices || [],
         visibleColumns: payload?.visibleColumns || [],
       };

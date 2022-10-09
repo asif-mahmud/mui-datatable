@@ -1,8 +1,9 @@
 declare enum MuiDatatableAction {
     UpdateColumns = 0,
-    UpdateOriginalData = 1,
-    UpdatePreparedData = 2,
-    UpdateData = 3,
-    SetVisibleColumns = 4
+    UpdateColumnVisiblityChoices = 1,
+    UpdateOriginalData = 2,
+    UpdatePreparedData = 3,
+    UpdateData = 4,
+    SetVisibleColumns = 5
 }
 export default MuiDatatableAction;

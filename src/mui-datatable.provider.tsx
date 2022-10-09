@@ -28,18 +28,10 @@ const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
   // show/hide column menu
   // we also want to reset/set the visible columns here
   useEffect(() => {
-    const columnVisibilityChoices = columns
-      .filter(col => !col.alwaysShow)
-      .map(col => col.property);
-    const visibleColumns = columns
-      .filter(col => !col.alwaysShow && !col.hide)
-      .map(col => col.property);
     dispatch({
       action: MuiDatatableAction.UpdateColumns,
       payload: {
         columns,
-        columnVisibilityChoices,
-        visibleColumns,
       },
     });
   }, [columns]);
@@ -51,6 +43,23 @@ const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
       payload: { originalData: data },
     });
   }, [data]);
+
+  // set column visibility choices
+  useEffect(() => {
+    const columnVisibilityChoices = columns
+      .filter(col => !col.alwaysShow)
+      .map(col => col.property);
+    const visibleColumns = columns
+      .filter(col => !col.alwaysShow && !col.hide)
+      .map(col => col.property);
+    dispatch({
+      action: MuiDatatableAction.UpdateColumnVisiblityChoices,
+      payload: {
+        columnVisibilityChoices,
+        visibleColumns,
+      },
+    });
+  }, [state.columns]);
 
   // set the prepared data based on state's original data
   // and columns
