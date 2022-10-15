@@ -13,7 +13,7 @@ import { useMuiDatatable } from './use-mui-datatable.hook';
 import { rand } from './utils';
 
 export type MuiDatatableSelectColumnsProps = {
-  showIcon?: boolean;
+  hideIcon?: boolean;
   icon?: ReactNode;
   label?: ReactNode;
   renderValue?: (selected: string[], choices: string[]) => ReactNode;
@@ -55,7 +55,7 @@ function defaultRenderListItem(
 }
 
 export function MuiDatatableSelectColumns({
-  showIcon = true,
+  hideIcon,
   icon = <VisibilityOutlinedIcon />,
   label = (
     <Typography variant='body1' sx={{ ml: 1 }}>
@@ -87,7 +87,7 @@ export function MuiDatatableSelectColumns({
   // field's label component
   const selectLabel = (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      {showIcon && icon}
+      {!hideIcon && icon}
       {label}
     </Box>
   );

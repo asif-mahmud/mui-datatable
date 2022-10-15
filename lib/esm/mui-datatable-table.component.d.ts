@@ -5,7 +5,7 @@ import { TableCellProps } from '@mui/material/TableCell';
 import { TableContainerProps } from '@mui/material/TableContainer';
 import { TableHeadProps } from '@mui/material/TableHead';
 import { TableRowProps } from '@mui/material/TableRow';
-interface MuiDatatableTableProps {
+export declare type MuiDatatableTableProps = {
     tableContainerProps?: TableContainerProps;
     tableProps?: TableProps;
     tableHeadProps?: TableHeadProps;
@@ -14,6 +14,5 @@ interface MuiDatatableTableProps {
     tableBodyProps?: TableBodyProps;
     valueRowProps?: TableRowProps;
     valueCellProps?: TableCellProps;
-}
+};
 export declare function MuiDatatableTable({ tableContainerProps, tableProps, tableHeadProps, headerRowProps, headerCellProps, tableBodyProps, valueRowProps, valueCellProps, }: MuiDatatableTableProps): JSX.Element;
-export {};

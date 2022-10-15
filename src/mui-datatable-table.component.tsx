@@ -9,7 +9,7 @@ import TableRow, { TableRowProps } from '@mui/material/TableRow';
 import React, { useMemo } from 'react';
 import { useMuiDatatable } from './use-mui-datatable.hook';
 
-interface MuiDatatableTableProps {
+export type MuiDatatableTableProps = {
   tableContainerProps?: TableContainerProps;
   tableProps?: TableProps;
   tableHeadProps?: TableHeadProps;
@@ -18,7 +18,7 @@ interface MuiDatatableTableProps {
   tableBodyProps?: TableBodyProps;
   valueRowProps?: TableRowProps;
   valueCellProps?: TableCellProps;
-}
+};
 
 export function MuiDatatableTable({
   tableContainerProps,
