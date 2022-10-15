@@ -1,5 +1,5 @@
-import { MuiDatatableColumnOptions } from './mui-datatable.reducer';
-export default function useMuiDatatable(): {
+import { MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
+export declare function useMuiDatatable(): {
     updateColumns: (columns: MuiDatatableColumnOptions[]) => void;
     updateOriginalData: (data: any[]) => void;
     updatePreparedData: (data: any[]) => void;
@@ -8,7 +8,7 @@ export default function useMuiDatatable(): {
     columns: MuiDatatableColumnOptions[];
     visibleColumns: string[];
     columnVisibilityChoices: string[];
-    data: any[];
-    preparedData: any[];
-    originalData: any[];
+    data: import("./mui-datatable-column-options.type").DataRow[];
+    preparedData: import("./mui-datatable-column-options.type").DataRow[];
+    originalData: import("./mui-datatable-column-options.type").DataRow[];
 };

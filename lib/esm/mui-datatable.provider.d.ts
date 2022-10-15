@@ -1,8 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
-import { MuiDatatableColumnOptions } from './mui-datatable.reducer';
+import { DataRow, MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
 export declare type MuiDatatableProviderProps = {
     columns: MuiDatatableColumnOptions[];
-    data: Object[];
+    data: DataRow[];
 };
-declare const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>>;
-export default MuiDatatable;
+export declare const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>>;

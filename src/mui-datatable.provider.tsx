@@ -1,19 +1,23 @@
 import React, { FC, PropsWithChildren, useEffect, useReducer } from 'react';
-import MuiDatatableSelectColumns from './mui-datatable-select-columns.component';
-import MuiDatatableTable from './mui-datatable-table.component';
-import MuiDatatableAction from './mui-datatable.action-types';
-import MuiDatatableContext from './mui-datatable.context';
-import MuiDatatableReducer, {
+import { MuiDatatableSelectColumns } from './mui-datatable-select-columns.component';
+import { MuiDatatableTable } from './mui-datatable-table.component';
+import { MuiDatatableAction } from './mui-datatable.action-types';
+import { MuiDatatableContext } from './mui-datatable.context';
+import {
+  DataRow,
   MuiDatatableColumnOptions,
+} from './mui-datatable-column-options.type';
+import {
+  MuiDatatableReducer,
   MuiDatatableInitialValue,
 } from './mui-datatable.reducer';
 
 export type MuiDatatableProviderProps = {
   columns: MuiDatatableColumnOptions[];
-  data: Object[];
+  data: DataRow[];
 };
 
-const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
+export const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
   columns,
   data,
   children,
@@ -137,5 +141,3 @@ const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
     </MuiDatatableContext.Provider>
   );
 };
-
-export default MuiDatatable;

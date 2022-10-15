@@ -3,5 +3,4 @@ import { MuiDatatableReducerAction, MuiDatatableReducerState } from './mui-datat
 export declare type MuiDatatableContextType = MuiDatatableReducerState & {
     dispatch?: Dispatch<MuiDatatableReducerAction>;
 };
-declare const MuiDatatableContext: import("react").Context<MuiDatatableContextType>;
-export default MuiDatatableContext;
+export declare const MuiDatatableContext: import("react").Context<MuiDatatableContextType>;

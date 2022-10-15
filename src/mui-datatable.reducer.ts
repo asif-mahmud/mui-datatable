@@ -1,27 +1,17 @@
-import { TableCellProps } from '@mui/material/TableCell';
-import { ReactNode, Reducer } from 'react';
-import MuiDatatableAction from './mui-datatable.action-types';
-
-export type MuiDatatableColumnOptions = {
-  header?: string;
-  renderHeader?: ReactNode;
-  headerCellProps?: TableCellProps;
-  property: string;
-  valueGetter?: (property: string, row: any) => unknown;
-  transformValue?: (value: any, row: any) => unknown;
-  renderCell?: (value: any, preparedRow: any, row: any) => ReactNode;
-  valueCellProps?: TableCellProps;
-  hide?: boolean;
-  alwaysShow?: boolean;
-};
+import { Reducer } from 'react';
+import {
+  DataRow,
+  MuiDatatableColumnOptions,
+} from './mui-datatable-column-options.type';
+import { MuiDatatableAction } from './mui-datatable.action-types';
 
 export type MuiDatatableReducerState = {
   columns: MuiDatatableColumnOptions[];
   visibleColumns: string[];
   columnVisibilityChoices: string[];
-  data: any[];
-  preparedData: any[];
-  originalData: any[];
+  data: DataRow[];
+  preparedData: DataRow[];
+  originalData: DataRow[];
 };
 
 export type MuiDatatableReducerAction = {
@@ -38,7 +28,7 @@ export const MuiDatatableInitialValue: MuiDatatableReducerState = {
   originalData: [],
 };
 
-const MuiDatatableReducer: Reducer<
+export const MuiDatatableReducer: Reducer<
   MuiDatatableReducerState,
   MuiDatatableReducerAction
 > = (state, { action, payload }) => {
@@ -84,5 +74,3 @@ const MuiDatatableReducer: Reducer<
       return state;
   }
 };
-
-export default MuiDatatableReducer;

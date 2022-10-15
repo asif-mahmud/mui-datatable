@@ -1,4 +1,4 @@
-declare enum MuiDatatableAction {
+export declare enum MuiDatatableAction {
     UpdateColumns = 0,
     UpdateColumnVisiblityChoices = 1,
     UpdateOriginalData = 2,
@@ -6,4 +6,3 @@ declare enum MuiDatatableAction {
     UpdateData = 4,
     SetVisibleColumns = 5
 }
-export default MuiDatatableAction;

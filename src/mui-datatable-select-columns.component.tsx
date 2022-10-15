@@ -1,15 +1,16 @@
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
+import FormControl, { FormControlProps } from '@mui/material/FormControl';
+import InputLabel, { InputLabelProps } from '@mui/material/InputLabel';
 import ListItemText from '@mui/material/ListItemText';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
+import Select, { SelectProps } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import React, { ReactNode } from 'react';
-import { MuiDatatableColumnOptions } from './mui-datatable.reducer';
-import useMuiDatatable from './use-mui-datatable.hook';
+import React, { ReactNode, useMemo } from 'react';
+import { MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
+import { useMuiDatatable } from './use-mui-datatable.hook';
+import { rand } from './utils';
 
 export type MuiDatatableSelectColumnsProps = {
   showIcon?: boolean;
@@ -20,6 +21,15 @@ export type MuiDatatableSelectColumnsProps = {
     column: MuiDatatableColumnOptions,
     index: number
   ) => ReactNode;
+  formControlProps?: FormControlProps;
+  inputLabelProps?: Omit<InputLabelProps, 'id'>;
+  selectFieldProps?: Partial<
+    Omit<
+      SelectProps<string[]>,
+      'labelId' | 'multiple' | 'value' | 'onChange' | 'label' | 'renderValue'
+    >
+  >;
+  menuItemProps?: Omit<MenuItemProps, 'key' | 'value'>;
 };
 
 function defaultRenderValue(selected: string[], choices: string[]) {
@@ -44,12 +54,23 @@ function defaultRenderListItem(
   );
 }
 
-export default function MuiDatatableSelectColumns({
+export function MuiDatatableSelectColumns({
   showIcon = true,
-  icon = <VisibilityOutlinedIcon sx={{ mr: 1 }} />,
-  label = <Typography variant='body1'>Columns</Typography>,
+  icon = <VisibilityOutlinedIcon />,
+  label = (
+    <Typography variant='body1' sx={{ ml: 1 }}>
+      Columns
+    </Typography>
+  ),
   renderValue = defaultRenderValue,
   renderListItem = defaultRenderListItem,
+  formControlProps: {
+    sx: formControlSx,
+    ...formControlRest
+  } = {} as FormControlProps,
+  inputLabelProps,
+  selectFieldProps,
+  menuItemProps,
 }: MuiDatatableSelectColumnsProps) {
   const {
     columnVisibilityChoices,
@@ -71,21 +92,30 @@ export default function MuiDatatableSelectColumns({
     </Box>
   );
 
+  // select field's label id
+  const labelId = useMemo(() => `mui-datatable-select-columns-${rand(4)}`, []);
+
   return (
-    <FormControl sx={{ minWidth: '12rem' }}>
-      <InputLabel id='mui-datatable-select-columns'>{selectLabel}</InputLabel>
+    <FormControl
+      sx={{ minWidth: '12rem', ...formControlSx }}
+      {...formControlRest}
+    >
+      <InputLabel id={labelId} {...inputLabelProps}>
+        {selectLabel}
+      </InputLabel>
       <Select
-        labelId='mui-datatable-select-columns'
+        {...selectFieldProps}
+        labelId={labelId}
+        label={selectLabel}
         multiple
         value={visibleColumns}
         onChange={event => {
           setVisibleColumns(event.target.value as string[]);
         }}
-        label={selectLabel}
         renderValue={selected => renderValue(selected, columnVisibilityChoices)}
       >
         {columns.map((col, index) => (
-          <MenuItem key={index} value={col.property}>
+          <MenuItem key={index} value={col.property} {...menuItemProps}>
             <Checkbox checked={visibleColumns.includes(col.property)} />
             <ListItemText>{renderListItem(col, index)}</ListItemText>
           </MenuItem>

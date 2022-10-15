@@ -1,13 +1,35 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import Table, { TableProps } from '@mui/material/Table';
+import TableBody, { TableBodyProps } from '@mui/material/TableBody';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import TableContainer, {
+  TableContainerProps,
+} from '@mui/material/TableContainer';
+import TableHead, { TableHeadProps } from '@mui/material/TableHead';
+import TableRow, { TableRowProps } from '@mui/material/TableRow';
 import React, { useMemo } from 'react';
-import useMuiDatatable from './use-mui-datatable.hook';
+import { useMuiDatatable } from './use-mui-datatable.hook';
 
-export default function MuiDatatableTable() {
+interface MuiDatatableTableProps {
+  tableContainerProps?: TableContainerProps;
+  tableProps?: TableProps;
+  tableHeadProps?: TableHeadProps;
+  headerRowProps?: TableRowProps;
+  headerCellProps?: TableCellProps;
+  tableBodyProps?: TableBodyProps;
+  valueRowProps?: TableRowProps;
+  valueCellProps?: TableCellProps;
+}
+
+export function MuiDatatableTable({
+  tableContainerProps,
+  tableProps,
+  tableHeadProps,
+  headerRowProps,
+  headerCellProps,
+  tableBodyProps,
+  valueRowProps,
+  valueCellProps,
+}: MuiDatatableTableProps) {
   const {
     columns: columnsConfig,
     visibleColumns,
@@ -22,12 +44,16 @@ export default function MuiDatatableTable() {
   }, [columnsConfig, visibleColumns]);
 
   return (
-    <TableContainer>
-      <Table>
-        <TableHead>
-          <TableRow>
+    <TableContainer {...tableContainerProps}>
+      <Table {...tableProps}>
+        <TableHead {...tableHeadProps}>
+          <TableRow {...headerRowProps}>
             {columns.map(col => (
-              <TableCell key={col.property} {...col.headerCellProps}>
+              <TableCell
+                key={col.property}
+                {...headerCellProps}
+                {...col.headerCellProps}
+              >
                 {col.renderHeader && col.renderHeader}
                 {!col.renderHeader && (col.header || col.property)}
               </TableCell>
@@ -35,11 +61,15 @@ export default function MuiDatatableTable() {
           </TableRow>
         </TableHead>
 
-        <TableBody>
+        <TableBody {...tableBodyProps}>
           {data.map((row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} {...valueRowProps}>
               {columns.map(col => (
-                <TableCell key={col.property} {...col.valueCellProps}>
+                <TableCell
+                  key={col.property}
+                  {...valueCellProps}
+                  {...col.valueCellProps}
+                >
                   {col.renderCell &&
                     col.renderCell(
                       row[col.property] || '',

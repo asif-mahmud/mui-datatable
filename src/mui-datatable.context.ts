@@ -9,8 +9,6 @@ export type MuiDatatableContextType = MuiDatatableReducerState & {
   dispatch?: Dispatch<MuiDatatableReducerAction>;
 };
 
-const MuiDatatableContext = createContext<MuiDatatableContextType>(
+export const MuiDatatableContext = createContext<MuiDatatableContextType>(
   MuiDatatableInitialValue
 );
-
-export default MuiDatatableContext;

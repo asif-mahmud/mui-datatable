@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import MuiDatatableAction from './mui-datatable.action-types';
-import MuiDatatableContext from './mui-datatable.context';
-import { MuiDatatableColumnOptions } from './mui-datatable.reducer';
+import { MuiDatatableAction } from './mui-datatable.action-types';
+import { MuiDatatableContext } from './mui-datatable.context';
+import { MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
 
-export default function useMuiDatatable() {
+export function useMuiDatatable() {
   const { dispatch, ...rest } = useContext(MuiDatatableContext);
 
   // wrapper for update columns action
