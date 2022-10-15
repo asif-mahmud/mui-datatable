@@ -1,6 +1,11 @@
-import { MuiDatatable, MuiDatatableColumnOptions } from '@mui/datatable';
+import {
+  DataRow,
+  MuiDatatable,
+  MuiDatatableColumnOptions,
+} from '@mui/datatable';
 import { Container } from '@mui/material';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 
 const columns: MuiDatatableColumnOptions[] = [
   {
@@ -52,9 +57,20 @@ const data = [
 ];
 
 function App() {
+  const [values, setValues] = useState<DataRow[] | null>(null);
+
+  useEffect(() => {
+    const cb = setTimeout(()=> {
+      setValues(data);
+    }, 5000);
+    return ()=>{
+      clearTimeout(cb);
+    }
+  }, []);
+
   return (
     <Container>
-      <MuiDatatable columns={columns} data={data}></MuiDatatable>
+      <MuiDatatable columns={columns} data={values || []} loading={!values}></MuiDatatable>
     </Container>
   );
 }

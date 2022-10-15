@@ -21,8 +21,7 @@ export {
   MuiDatatableTableProps,
   MuiDatatableTable,
 } from './mui-datatable-table.component';
-export {
-  MuiDatatableProviderProps,
-  MuiDatatable,
-} from './mui-datatable.provider';
+export { MuiDatatableProviderProps } from './mui-datatable-provider-props.type';
+export { useMuiDatatableProcessor } from './use-mui-datatable-processor.hook';
+export { MuiDatatable } from './mui-datatable.provider';
 export { useMuiDatatable } from './use-mui-datatable.hook';

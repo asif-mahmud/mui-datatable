@@ -64,6 +64,18 @@ export function useMuiDatatable() {
     }
   };
 
+  // wrapper for updating loading state
+  const setLoading = (loading: boolean) => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.SetLoading,
+        payload: {
+          loading,
+        },
+      });
+    }
+  };
+
   return {
     ...rest,
     updateColumns,
@@ -71,5 +83,6 @@ export function useMuiDatatable() {
     updatePreparedData,
     updateData,
     setVisibleColumns,
+    setLoading,
   };
 }

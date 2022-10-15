@@ -4,5 +4,6 @@ export declare enum MuiDatatableAction {
     UpdateOriginalData = 2,
     UpdatePreparedData = 3,
     UpdateData = 4,
-    SetVisibleColumns = 5
+    SetVisibleColumns = 5,
+    SetLoading = 6
 }

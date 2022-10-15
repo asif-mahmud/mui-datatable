@@ -8,6 +8,7 @@ export declare type MuiDatatableReducerState = {
     data: DataRow[];
     preparedData: DataRow[];
     originalData: DataRow[];
+    loading: boolean;
 };
 export declare type MuiDatatableReducerAction = {
     action: MuiDatatableAction;

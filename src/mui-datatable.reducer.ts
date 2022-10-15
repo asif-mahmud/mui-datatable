@@ -12,6 +12,7 @@ export type MuiDatatableReducerState = {
   data: DataRow[];
   preparedData: DataRow[];
   originalData: DataRow[];
+  loading: boolean;
 };
 
 export type MuiDatatableReducerAction = {
@@ -26,6 +27,7 @@ export const MuiDatatableInitialValue: MuiDatatableReducerState = {
   data: [],
   preparedData: [],
   originalData: [],
+  loading: false,
 };
 
 export const MuiDatatableReducer: Reducer<
@@ -68,6 +70,12 @@ export const MuiDatatableReducer: Reducer<
       return {
         ...state,
         visibleColumns: payload?.visibleColumns || [],
+      };
+    }
+    case MuiDatatableAction.SetLoading: {
+      return {
+        ...state,
+        loading: !!payload?.loading,
       };
     }
     default:
