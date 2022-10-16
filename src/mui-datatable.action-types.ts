@@ -1,9 +1,10 @@
 export enum MuiDatatableAction {
   UpdateColumns,
-  UpdateColumnVisiblityChoices,
+  UpdateColumnMeta,
   UpdateOriginalData,
   UpdatePreparedData,
   UpdateData,
   SetVisibleColumns,
   SetLoading,
+  SetSearchTerm,
 }

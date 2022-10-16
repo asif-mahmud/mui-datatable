@@ -1,14 +1,16 @@
 import { Reducer } from 'react';
-import { DataRow, MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
+import { MuiDatatableRow, MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
 import { MuiDatatableAction } from './mui-datatable.action-types';
 export declare type MuiDatatableReducerState = {
     columns: MuiDatatableColumnOptions[];
     visibleColumns: string[];
     columnVisibilityChoices: string[];
-    data: DataRow[];
-    preparedData: DataRow[];
-    originalData: DataRow[];
+    data: MuiDatatableRow[];
+    preparedData: MuiDatatableRow[];
+    originalData: MuiDatatableRow[];
     loading: boolean;
+    searchTerm: string;
+    searchableColumns: string[];
 };
 export declare type MuiDatatableReducerAction = {
     action: MuiDatatableAction;

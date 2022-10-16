@@ -76,6 +76,18 @@ export function useMuiDatatable() {
     }
   };
 
+  // wrapper for setting search term
+  const setSearchTerm = (searchTerm: string) => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.SetSearchTerm,
+        payload: {
+          searchTerm,
+        },
+      });
+    }
+  };
+
   return {
     ...rest,
     updateColumns,
@@ -84,5 +96,6 @@ export function useMuiDatatable() {
     updateData,
     setVisibleColumns,
     setLoading,
+    setSearchTerm,
   };
 }

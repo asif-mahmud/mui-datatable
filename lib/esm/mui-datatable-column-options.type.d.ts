@@ -1,15 +1,17 @@
 import { TableCellProps } from '@mui/material/TableCell';
 import { ReactNode } from 'react';
-export declare type DataRow = Record<string, any>;
+export declare type MuiDatatableRow = Record<string, any>;
 export declare type MuiDatatableColumnOptions = {
     header?: string;
     renderHeader?: ReactNode;
     headerCellProps?: TableCellProps;
     property: string;
-    valueGetter?: (property: string, row: DataRow) => unknown;
-    transformValue?: (value: any, row: DataRow) => unknown;
-    renderCell?: (value: any, preparedRow: DataRow, row: DataRow) => ReactNode;
+    valueGetter?: (property: string, row: MuiDatatableRow) => unknown;
+    transformValue?: (value: any, row: MuiDatatableRow) => unknown;
+    renderCell?: (value: any, preparedRow: MuiDatatableRow, row: MuiDatatableRow) => ReactNode;
     valueCellProps?: TableCellProps;
-    hide?: boolean;
-    alwaysShow?: boolean;
+    hideFromTable?: boolean;
+    hideFromColumnSelection?: boolean;
+    search?: boolean;
+    searchFn?: (searchTerm: string, value: any) => boolean;
 };

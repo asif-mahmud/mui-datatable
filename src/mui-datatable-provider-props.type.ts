@@ -1,10 +1,10 @@
 import {
-  DataRow,
+  MuiDatatableRow,
   MuiDatatableColumnOptions,
 } from './mui-datatable-column-options.type';
 
 export type MuiDatatableProviderProps = {
   columns: MuiDatatableColumnOptions[];
-  data: DataRow[];
+  data: MuiDatatableRow[];
   loading?: boolean;
 };

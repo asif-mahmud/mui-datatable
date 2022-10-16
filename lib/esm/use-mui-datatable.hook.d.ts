@@ -6,11 +6,14 @@ export declare function useMuiDatatable(): {
     updateData: (data: any[]) => void;
     setVisibleColumns: (columns: string[]) => void;
     setLoading: (loading: boolean) => void;
+    setSearchTerm: (searchTerm: string) => void;
     columns: MuiDatatableColumnOptions[];
     visibleColumns: string[];
     columnVisibilityChoices: string[];
-    data: import("./mui-datatable-column-options.type").DataRow[];
-    preparedData: import("./mui-datatable-column-options.type").DataRow[];
-    originalData: import("./mui-datatable-column-options.type").DataRow[];
+    data: import("./mui-datatable-column-options.type").MuiDatatableRow[];
+    preparedData: import("./mui-datatable-column-options.type").MuiDatatableRow[];
+    originalData: import("./mui-datatable-column-options.type").MuiDatatableRow[];
     loading: boolean;
+    searchTerm: string;
+    searchableColumns: string[];
 };

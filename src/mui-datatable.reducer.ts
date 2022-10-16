@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import {
-  DataRow,
+  MuiDatatableRow,
   MuiDatatableColumnOptions,
 } from './mui-datatable-column-options.type';
 import { MuiDatatableAction } from './mui-datatable.action-types';
@@ -9,10 +9,12 @@ export type MuiDatatableReducerState = {
   columns: MuiDatatableColumnOptions[];
   visibleColumns: string[];
   columnVisibilityChoices: string[];
-  data: DataRow[];
-  preparedData: DataRow[];
-  originalData: DataRow[];
+  data: MuiDatatableRow[];
+  preparedData: MuiDatatableRow[];
+  originalData: MuiDatatableRow[];
   loading: boolean;
+  searchTerm: string;
+  searchableColumns: string[];
 };
 
 export type MuiDatatableReducerAction = {
@@ -28,6 +30,8 @@ export const MuiDatatableInitialValue: MuiDatatableReducerState = {
   preparedData: [],
   originalData: [],
   loading: false,
+  searchTerm: '',
+  searchableColumns: [],
 };
 
 export const MuiDatatableReducer: Reducer<
@@ -41,11 +45,12 @@ export const MuiDatatableReducer: Reducer<
         columns: payload?.columns || [],
       };
     }
-    case MuiDatatableAction.UpdateColumnVisiblityChoices: {
+    case MuiDatatableAction.UpdateColumnMeta: {
       return {
         ...state,
         columnVisibilityChoices: payload?.columnVisibilityChoices || [],
         visibleColumns: payload?.visibleColumns || [],
+        searchableColumns: payload?.searchableColumns || [],
       };
     }
     case MuiDatatableAction.UpdateOriginalData: {
@@ -76,6 +81,12 @@ export const MuiDatatableReducer: Reducer<
       return {
         ...state,
         loading: !!payload?.loading,
+      };
+    }
+    case MuiDatatableAction.SetSearchTerm: {
+      return {
+        ...state,
+        searchTerm: payload?.searchTerm || '',
       };
     }
     default:

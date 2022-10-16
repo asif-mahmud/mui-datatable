@@ -33,11 +33,13 @@ export type MuiDatatableSelectColumnsProps = {
 };
 
 function defaultRenderValue(selected: string[], choices: string[]) {
+  const hasUnselectedChoices =
+    choices.filter(choice => !selected.includes(choice)).length > 0;
   return selected.length === 0
     ? ''
     : selected.length === 1
     ? 'Showing 1 column'
-    : selected.length === choices.length
+    : !hasUnselectedChoices
     ? 'Showing all columns'
     : `Showing ${selected.length} columns`;
 }

@@ -7,6 +7,10 @@ import {
   MuiDatatableReducer,
 } from './mui-datatable.reducer';
 
+function defaultSearchFunction(searchTerm: string, value: any): boolean {
+  return `${value}`.toLowerCase().search(searchTerm) >= 0;
+}
+
 export function useMuiDatatableProcessor({
   columns,
   data,
@@ -47,19 +51,24 @@ export function useMuiDatatableProcessor({
     });
   }, [data]);
 
-  // set column visibility choices
+  // set column visibility choices,
+  // collect names of searchable columns
   useEffect(() => {
     const columnVisibilityChoices = columns
-      .filter(col => !col.alwaysShow)
+      .filter(col => !col.hideFromColumnSelection)
       .map(col => col.property);
     const visibleColumns = columns
-      .filter(col => !col.alwaysShow && !col.hide)
+      .filter(col => !col.hideFromTable)
+      .map(col => col.property);
+    const searchableColumns = columns
+      .filter(col => col.search)
       .map(col => col.property);
     dispatch({
-      action: MuiDatatableAction.UpdateColumnVisiblityChoices,
+      action: MuiDatatableAction.UpdateColumnMeta,
       payload: {
         columnVisibilityChoices,
         visibleColumns,
+        searchableColumns,
       },
     });
   }, [state.columns]);
@@ -118,15 +127,38 @@ export function useMuiDatatableProcessor({
 
   // set the data to be shown in the table
   useEffect(() => {
+    // apply search
+    const data = state.preparedData.filter((prepared, index) => {
+      // no need to apply search if not needed
+      if (!state.searchTerm || state.searchableColumns.length === 0) {
+        return true;
+      }
+
+      // choose the proper search function
+      const searchFn = state.columns[index].searchFn || defaultSearchFunction;
+
+      // only apply search if search term is non-empty and
+      // there are columns to search into
+      let foundInSearch = false;
+      for (const searchKey of state.searchableColumns) {
+        if (searchFn(state.searchTerm, prepared[searchKey])) {
+          foundInSearch = true;
+          break;
+        }
+      }
+
+      return foundInSearch;
+    });
+
     // TODO: we should probably apply search, sort, filter operations
     // here as well
     dispatch({
       action: MuiDatatableAction.UpdateData,
       payload: {
-        data: state.preparedData,
+        data,
       },
     });
-  }, [state.preparedData]);
+  }, [state.preparedData, state.searchTerm, state.searchableColumns]);
 
   return { ...state, dispatch };
 }

@@ -32,7 +32,7 @@ react and material UI systems.
 - [x] Allow customizing header cell and value cell properties
 - [x] Add column visibility controlling options
 - [x] Support loading state
-- [ ] Add search option
+- [x] Add search option
 - [ ] Add filterring option
 - [ ] Add sort option
 - [ ] Add pagination

@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { MuiDatatableProviderProps } from './mui-datatable-provider-props.type';
+import { MuiDatatableSearch } from './mui-datatable-search.component';
 import { MuiDatatableSelectColumns } from './mui-datatable-select-columns.component';
 import { MuiDatatableTable } from './mui-datatable-table.component';
 import { MuiDatatableContext } from './mui-datatable.context';
@@ -16,6 +17,7 @@ export const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
       {children && children}
       {!children && (
         <>
+          <MuiDatatableSearch />
           <MuiDatatableSelectColumns />
           <MuiDatatableTable />
         </>

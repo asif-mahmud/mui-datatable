@@ -1,5 +1,5 @@
 import {
-  DataRow,
+  MuiDatatableRow,
   MuiDatatable,
   MuiDatatableColumnOptions,
 } from '@mui/datatable';
@@ -18,23 +18,26 @@ const columns: MuiDatatableColumnOptions[] = [
     valueCellProps: {
       align: 'center',
     },
+    hideFromColumnSelection: true,
   },
   {
     property: 'name',
     header: 'Name',
+    search: true,
   },
   {
     property: 'birthday',
     header: 'Birthday',
     transformValue: (value: string) => new Date(value).toDateString(),
+    search: true,
   },
   {
     property: 'age',
     renderHeader: <i>Age</i>,
-    hide: true,
     valueGetter: (_, row) => {
       return moment.duration(moment().diff(moment(row.birthday))).humanize();
     },
+    hideFromTable: true,
   },
 ];
 
@@ -57,20 +60,25 @@ const data = [
 ];
 
 function App() {
-  const [values, setValues] = useState<DataRow[] | null>(null);
+  const [values, setValues] = useState<MuiDatatableRow[] | null>(null);
 
+  // showcasing asynchronous data
   useEffect(() => {
-    const cb = setTimeout(()=> {
+    const cb = setTimeout(() => {
       setValues(data);
-    }, 5000);
-    return ()=>{
+    }, 2000);
+    return () => {
       clearTimeout(cb);
-    }
+    };
   }, []);
 
   return (
     <Container>
-      <MuiDatatable columns={columns} data={values || []} loading={!values}></MuiDatatable>
+      <MuiDatatable
+        columns={columns}
+        data={values || []}
+        loading={!values}
+      ></MuiDatatable>
     </Container>
   );
 }
