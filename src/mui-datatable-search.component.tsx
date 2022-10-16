@@ -1,6 +1,7 @@
-import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import React from 'react';
 import { useMuiDatatable } from './use-mui-datatable.hook';
 
 export type MuiDatatableSearchProps = Omit<
