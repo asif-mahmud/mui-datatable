@@ -19,17 +19,16 @@ const columns: MuiDatatableColumnOptions[] = [
       align: 'center',
     },
     hideFromColumnSelection: true,
+    disableSearch: true,
   },
   {
     property: 'name',
     header: 'Name',
-    search: true,
   },
   {
     property: 'birthday',
     header: 'Birthday',
     transformValue: (value: string) => new Date(value).toDateString(),
-    search: true,
   },
   {
     property: 'age',

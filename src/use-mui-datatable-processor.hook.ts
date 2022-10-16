@@ -61,7 +61,7 @@ export function useMuiDatatableProcessor({
       .filter(col => !col.hideFromTable)
       .map(col => col.property);
     const searchableColumns = columns
-      .filter(col => col.search)
+      .filter(col => !col.disableSearch)
       .map(col => col.property);
     dispatch({
       action: MuiDatatableAction.UpdateColumnMeta,

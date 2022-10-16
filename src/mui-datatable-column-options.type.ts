@@ -18,6 +18,6 @@ export type MuiDatatableColumnOptions = {
   valueCellProps?: TableCellProps;
   hideFromTable?: boolean;
   hideFromColumnSelection?: boolean;
-  search?: boolean;
+  disableSearch?: boolean;
   searchFn?: (searchTerm: string, value: any) => boolean;
 };
