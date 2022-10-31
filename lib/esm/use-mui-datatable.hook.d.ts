@@ -1,4 +1,5 @@
 import { MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
+import { MuiDatatablePaginationOptions } from './mui-datatable-provider-props.type';
 export declare function useMuiDatatable(): {
     updateColumns: (columns: MuiDatatableColumnOptions[]) => void;
     updateOriginalData: (data: any[]) => void;
@@ -7,6 +8,13 @@ export declare function useMuiDatatable(): {
     setVisibleColumns: (columns: string[]) => void;
     setLoading: (loading: boolean) => void;
     setSearchTerm: (searchTerm: string) => void;
+    updatePaginationOptions: (options: MuiDatatablePaginationOptions) => void;
+    setPageSize: (pageSize: number) => void;
+    setPage: (page: number) => void;
+    nextPage: () => void;
+    previousPage: () => void;
+    firstPage: () => void;
+    lastPage: () => void;
     columns: MuiDatatableColumnOptions[];
     visibleColumns: string[];
     columnVisibilityChoices: string[];
@@ -16,4 +24,7 @@ export declare function useMuiDatatable(): {
     loading: boolean;
     searchTerm: string;
     searchableColumns: string[];
+    pageMeta: import("./mui-datatable.reducer").MuiDatatablePageMeta;
+    paginationOptions: MuiDatatablePaginationOptions;
+    page: import("./mui-datatable-column-options.type").MuiDatatableRow[];
 };

@@ -3,7 +3,19 @@ import {
   MuiDatatableRow,
   MuiDatatableColumnOptions,
 } from './mui-datatable-column-options.type';
+import {
+  MuiDatatableDefaultPaginationOptions,
+  MuiDatatablePaginationOptions,
+} from './mui-datatable-provider-props.type';
 import { MuiDatatableAction } from './mui-datatable.action-types';
+
+export type MuiDatatablePageMeta = {
+  cursor?: number;
+  hasNext?: boolean;
+  hasPrevious?: boolean;
+  pageSize?: number;
+  total?: number;
+};
 
 export type MuiDatatableReducerState = {
   columns: MuiDatatableColumnOptions[];
@@ -15,6 +27,9 @@ export type MuiDatatableReducerState = {
   loading: boolean;
   searchTerm: string;
   searchableColumns: string[];
+  pageMeta: MuiDatatablePageMeta;
+  paginationOptions: MuiDatatablePaginationOptions;
+  page: MuiDatatableRow[];
 };
 
 export type MuiDatatableReducerAction = {
@@ -32,6 +47,15 @@ export const MuiDatatableInitialValue: MuiDatatableReducerState = {
   loading: false,
   searchTerm: '',
   searchableColumns: [],
+  pageMeta: {
+    cursor: 0,
+    hasNext: false,
+    hasPrevious: false,
+    pageSize: 0,
+    total: 0,
+  },
+  paginationOptions: MuiDatatableDefaultPaginationOptions,
+  page: [],
 };
 
 export const MuiDatatableReducer: Reducer<
@@ -87,6 +111,30 @@ export const MuiDatatableReducer: Reducer<
       return {
         ...state,
         searchTerm: payload?.searchTerm || '',
+      };
+    }
+    case MuiDatatableAction.UpdatePaginationOptions: {
+      return {
+        ...state,
+        paginationOptions: {
+          ...state.paginationOptions,
+          ...payload?.paginationOptions,
+        },
+      };
+    }
+    case MuiDatatableAction.UpdatePagination: {
+      return {
+        ...state,
+        pageMeta: {
+          ...state.pageMeta,
+          ...payload?.pageMeta,
+        },
+      };
+    }
+    case MuiDatatableAction.SetCurrentPageData: {
+      return {
+        ...state,
+        page: payload?.page || [],
       };
     }
     default:

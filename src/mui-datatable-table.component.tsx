@@ -45,10 +45,15 @@ export function MuiDatatableTable({
     columns: columnsConfig,
     visibleColumns,
     data,
+    page,
+    paginationOptions: { disablePagination },
     preparedData,
     originalData,
     loading,
   } = useMuiDatatable();
+
+  // select whole data or just current page to render
+  const dataToRender = disablePagination ? data : page;
 
   // only show columns that are being selected to be visible
   const columns = useMemo(() => {
@@ -75,7 +80,7 @@ export function MuiDatatableTable({
 
         <TableBody {...tableBodyProps}>
           {!loading &&
-            data.map((row, index) => (
+            dataToRender.map((row, index) => (
               <TableRow key={index} {...valueRowProps}>
                 {columns.map(col => (
                   <TableCell

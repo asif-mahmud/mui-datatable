@@ -1,5 +1,8 @@
 import { useEffect, useReducer } from 'react';
-import { MuiDatatableProviderProps } from './mui-datatable-provider-props.type';
+import {
+  MuiDatatableDefaultPaginationOptions,
+  MuiDatatableProviderProps,
+} from './mui-datatable-provider-props.type';
 import { MuiDatatableAction } from './mui-datatable.action-types';
 import { MuiDatatableContextType } from './mui-datatable.context';
 import {
@@ -15,6 +18,9 @@ export function useMuiDatatableProcessor({
   columns,
   data,
   loading,
+  pageSizes = MuiDatatableDefaultPaginationOptions.pageSizes,
+  defaultPageSize = MuiDatatableDefaultPaginationOptions.defaultPageSize,
+  disablePagination = MuiDatatableDefaultPaginationOptions.disablePagination,
 }: MuiDatatableProviderProps): MuiDatatableContextType {
   // datatable state
   const [state, dispatch] = useReducer(
@@ -42,6 +48,29 @@ export function useMuiDatatableProcessor({
       },
     });
   }, [columns]);
+
+  // setup pagination options
+  useEffect(() => {
+    dispatch({
+      action: MuiDatatableAction.UpdatePaginationOptions,
+      payload: {
+        paginationOptions: { pageSizes, defaultPageSize, disablePagination },
+      },
+    });
+  }, [pageSizes, defaultPageSize, disablePagination]);
+
+  // setup first page size based on default page size
+  useEffect(() => {
+    dispatch({
+      action: MuiDatatableAction.UpdatePagination,
+      payload: {
+        pageMeta: {
+          ...state.pageMeta,
+          pageSize: state.paginationOptions.defaultPageSize as number,
+        },
+      },
+    });
+  }, [state.paginationOptions.defaultPageSize]);
 
   // set original data from the property value
   useEffect(() => {
@@ -159,6 +188,50 @@ export function useMuiDatatableProcessor({
       },
     });
   }, [state.preparedData, state.searchTerm, state.searchableColumns]);
+
+  // set first page meta, this is
+  // more like a startup/reset page meta
+  useEffect(() => {
+    dispatch({
+      action: MuiDatatableAction.UpdatePagination,
+      payload: {
+        pageMeta: {
+          cursor: 0,
+          total: state.data.length,
+        },
+      },
+    });
+  }, [state.data, state.paginationOptions, state.pageMeta.pageSize]);
+
+  // calculate page meta
+  useEffect(() => {
+    dispatch({
+      action: MuiDatatableAction.UpdatePagination,
+      payload: {
+        pageMeta: {
+          hasNext:
+            state.data.length >
+            (state.pageMeta.cursor as number) +
+              (state.pageMeta.pageSize as number),
+          hasPrevious: (state.pageMeta.cursor as number) > 0,
+        },
+      },
+    });
+  }, [state.data, state.pageMeta.cursor, state.pageMeta.pageSize]);
+
+  // set the current page data based on page meta
+  useEffect(() => {
+    dispatch({
+      action: MuiDatatableAction.SetCurrentPageData,
+      payload: {
+        page: state.data.slice(
+          state.pageMeta.cursor as number,
+          (state.pageMeta.cursor as number) +
+            (state.pageMeta.pageSize as number)
+        ),
+      },
+    });
+  }, [state.data, state.pageMeta]);
 
   return { ...state, dispatch };
 }

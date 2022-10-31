@@ -7,4 +7,7 @@ export enum MuiDatatableAction {
   SetVisibleColumns,
   SetLoading,
   SetSearchTerm,
+  UpdatePaginationOptions,
+  UpdatePagination,
+  SetCurrentPageData,
 }

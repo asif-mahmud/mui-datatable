@@ -7,10 +7,9 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import Select, { SelectProps } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useId } from 'react';
 import { MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
 import { useMuiDatatable } from './use-mui-datatable.hook';
-import { rand } from './utils';
 
 export type MuiDatatableSelectColumnsProps = {
   hideIcon?: boolean;
@@ -95,7 +94,7 @@ export function MuiDatatableSelectColumns({
   );
 
   // select field's label id
-  const labelId = useMemo(() => `mui-datatable-select-columns-${rand(4)}`, []);
+  const labelId = useId();
 
   return (
     <FormControl

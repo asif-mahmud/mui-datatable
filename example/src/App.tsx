@@ -77,6 +77,8 @@ function App() {
         columns={columns}
         data={values || []}
         loading={!values}
+        defaultPageSize={2}
+        pageSizes={[2, 5, 10, 15]}
       ></MuiDatatable>
     </Container>
   );

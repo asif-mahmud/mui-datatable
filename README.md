@@ -24,7 +24,7 @@ react and material UI systems.
 
 # Roadmap
 
-- [x] Render static data
+- [x] Render static/asynchronous data
 - [x] Allow custom renderring option for table headers
 - [x] Allow picking or computing property value
 - [x] Allow transforming collected or computed property value
@@ -35,10 +35,10 @@ react and material UI systems.
 - [x] Add search option
 - [ ] Add filterring option
 - [ ] Add sort option
-- [ ] Add pagination
+- [x] Add pagination
+- [ ] Documentation
 - [ ] Add persistent table configuration options
 - [ ] Add server side data fetching page by page
 - [ ] Add server side data searching
 - [ ] Add server side data filtering
 - [ ] Add server side data sorting
-- [ ] Column resizing option

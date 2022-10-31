@@ -10,6 +10,7 @@ export {
 export {
   MuiDatatableInitialValue,
   MuiDatatableReducerAction,
+  MuiDatatablePageMeta,
   MuiDatatableReducerState,
   MuiDatatableReducer,
 } from './mui-datatable.reducer';
@@ -21,7 +22,11 @@ export {
   MuiDatatableTableProps,
   MuiDatatableTable,
 } from './mui-datatable-table.component';
-export { MuiDatatableProviderProps } from './mui-datatable-provider-props.type';
+export {
+  MuiDatatablePaginationOptions,
+  MuiDatatableDefaultPaginationOptions,
+  MuiDatatableProviderProps,
+} from './mui-datatable-provider-props.type';
 export { useMuiDatatableProcessor } from './use-mui-datatable-processor.hook';
 export { MuiDatatable } from './mui-datatable.provider';
 export { useMuiDatatable } from './use-mui-datatable.hook';
@@ -29,3 +34,11 @@ export {
   MuiDatatableSearchProps,
   MuiDatatableSearch,
 } from './mui-datatable-search.component';
+export {
+  MuiDatatablePageNavigationProps,
+  MuiDatatablePageNavigation,
+} from './mui-datatable-page-navigation.component';
+export {
+  MuiDatatablePageSizeSelectProps,
+  MuiDatatablePageSizeSelect,
+} from './mui-datatable-page-size-select.component';

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { MuiDatatableAction } from './mui-datatable.action-types';
 import { MuiDatatableContext } from './mui-datatable.context';
 import { MuiDatatableColumnOptions } from './mui-datatable-column-options.type';
+import { MuiDatatablePaginationOptions } from './mui-datatable-provider-props.type';
 
 export function useMuiDatatable() {
   const { dispatch, ...rest } = useContext(MuiDatatableContext);
@@ -88,6 +89,109 @@ export function useMuiDatatable() {
     }
   };
 
+  // wrapper for changing pagination options
+  const updatePaginationOptions = (options: MuiDatatablePaginationOptions) => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.UpdatePaginationOptions,
+        payload: {
+          paginationOptions: options,
+        },
+      });
+    }
+  };
+
+  // wrapper for setting current page size
+  const setPageSize = (pageSize: number) => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.UpdatePagination,
+        payload: {
+          pageMeta: {
+            pageSize,
+          },
+        },
+      });
+    }
+  };
+
+  // wrapper for navigating to a page
+  const setPage = (page: number) => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.UpdatePagination,
+        payload: {
+          pageMeta: {
+            cursor: (rest.pageMeta.pageSize as number) * page,
+          },
+        },
+      });
+    }
+  };
+
+  // wrapper to navigate to next page
+  const nextPage = () => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.UpdatePagination,
+        payload: {
+          pageMeta: {
+            cursor:
+              (rest.pageMeta.cursor as number) +
+              (rest.pageMeta.pageSize as number),
+          },
+        },
+      });
+    }
+  };
+
+  // wrapper to navigate to previous page
+  const previousPage = () => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.UpdatePagination,
+        payload: {
+          pageMeta: {
+            cursor:
+              (rest.pageMeta.cursor as number) -
+              (rest.pageMeta.pageSize as number),
+          },
+        },
+      });
+    }
+  };
+
+  // wrapper to navigate to first page
+  const firstPage = () => {
+    if (dispatch) {
+      dispatch({
+        action: MuiDatatableAction.UpdatePagination,
+        payload: {
+          pageMeta: {
+            cursor: 0,
+          },
+        },
+      });
+    }
+  };
+
+  // wrapper to navigate to last page
+  const lastPage = () => {
+    if (dispatch) {
+      const pageCount = Math.floor(
+        (rest.pageMeta.total as number) / (rest.pageMeta.pageSize as number)
+      );
+      dispatch({
+        action: MuiDatatableAction.UpdatePagination,
+        payload: {
+          pageMeta: {
+            cursor: pageCount * (rest.pageMeta.pageSize as number),
+          },
+        },
+      });
+    }
+  };
+
   return {
     ...rest,
     updateColumns,
@@ -97,5 +201,12 @@ export function useMuiDatatable() {
     setVisibleColumns,
     setLoading,
     setSearchTerm,
+    updatePaginationOptions,
+    setPageSize,
+    setPage,
+    nextPage,
+    previousPage,
+    firstPage,
+    lastPage,
   };
 }
