@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MuiDatatableReducer = exports.MuiDatatableInitialValue = void 0;
-const mui_datatable_provider_props_type_1 = require("./mui-datatable-provider-props.type");
-const mui_datatable_action_types_1 = require("./mui-datatable.action-types");
-exports.MuiDatatableInitialValue = {
+import { MuiDatatableDefaultPaginationOptions, } from './mui-datatable-provider-props.type';
+import { MuiDatatableAction } from './mui-datatable.action-types';
+export const MuiDatatableInitialValue = {
     columns: [],
     visibleColumns: [],
     columnVisibilityChoices: [],
@@ -20,18 +17,18 @@ exports.MuiDatatableInitialValue = {
         pageSize: 0,
         total: 0,
     },
-    paginationOptions: mui_datatable_provider_props_type_1.MuiDatatableDefaultPaginationOptions,
+    paginationOptions: MuiDatatableDefaultPaginationOptions,
     page: [],
 };
-const MuiDatatableReducer = (state, { action, payload }) => {
+export const MuiDatatableReducer = (state, { action, payload }) => {
     switch (action) {
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdateColumns: {
+        case MuiDatatableAction.UpdateColumns: {
             return {
                 ...state,
                 columns: payload?.columns || [],
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdateColumnMeta: {
+        case MuiDatatableAction.UpdateColumnMeta: {
             return {
                 ...state,
                 columnVisibilityChoices: payload?.columnVisibilityChoices || [],
@@ -39,43 +36,43 @@ const MuiDatatableReducer = (state, { action, payload }) => {
                 searchableColumns: payload?.searchableColumns || [],
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdateOriginalData: {
+        case MuiDatatableAction.UpdateOriginalData: {
             return {
                 ...state,
                 originalData: payload?.originalData || [],
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdatePreparedData: {
+        case MuiDatatableAction.UpdatePreparedData: {
             return {
                 ...state,
                 preparedData: payload?.preparedData || [],
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdateData: {
+        case MuiDatatableAction.UpdateData: {
             return {
                 ...state,
                 data: payload?.data || [],
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.SetVisibleColumns: {
+        case MuiDatatableAction.SetVisibleColumns: {
             return {
                 ...state,
                 visibleColumns: payload?.visibleColumns || [],
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.SetLoading: {
+        case MuiDatatableAction.SetLoading: {
             return {
                 ...state,
                 loading: !!payload?.loading,
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.SetSearchTerm: {
+        case MuiDatatableAction.SetSearchTerm: {
             return {
                 ...state,
                 searchTerm: payload?.searchTerm || '',
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdatePaginationOptions: {
+        case MuiDatatableAction.UpdatePaginationOptions: {
             return {
                 ...state,
                 paginationOptions: {
@@ -84,7 +81,7 @@ const MuiDatatableReducer = (state, { action, payload }) => {
                 },
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination: {
+        case MuiDatatableAction.UpdatePagination: {
             return {
                 ...state,
                 pageMeta: {
@@ -93,7 +90,7 @@ const MuiDatatableReducer = (state, { action, payload }) => {
                 },
             };
         }
-        case mui_datatable_action_types_1.MuiDatatableAction.SetCurrentPageData: {
+        case MuiDatatableAction.SetCurrentPageData: {
             return {
                 ...state,
                 page: payload?.page || [],
@@ -103,4 +100,3 @@ const MuiDatatableReducer = (state, { action, payload }) => {
             return state;
     }
 };
-exports.MuiDatatableReducer = MuiDatatableReducer;

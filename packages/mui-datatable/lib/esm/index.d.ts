@@ -9,5 +9,4 @@ export { useMuiDatatableProcessor } from './use-mui-datatable-processor.hook';
 export { MuiDatatable } from './mui-datatable.provider';
 export { useMuiDatatable } from './use-mui-datatable.hook';
 export { MuiDatatableSearchProps, MuiDatatableSearch, } from './mui-datatable-search.component';
-export { MuiDatatablePageNavigationProps, MuiDatatablePageNavigation, } from './mui-datatable-page-navigation.component';
-export { MuiDatatablePageSizeSelectProps, MuiDatatablePageSizeSelect, } from './mui-datatable-page-size-select.component';
+export { MuiDatatablePaginationProps, MuiDatatablePagination, } from './mui-datatable-pagination.component';

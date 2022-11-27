@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MuiDatatableAction = void 0;
-var MuiDatatableAction;
+export var MuiDatatableAction;
 (function (MuiDatatableAction) {
     MuiDatatableAction[MuiDatatableAction["UpdateColumns"] = 0] = "UpdateColumns";
     MuiDatatableAction[MuiDatatableAction["UpdateColumnMeta"] = 1] = "UpdateColumnMeta";
@@ -14,4 +11,4 @@ var MuiDatatableAction;
     MuiDatatableAction[MuiDatatableAction["UpdatePaginationOptions"] = 8] = "UpdatePaginationOptions";
     MuiDatatableAction[MuiDatatableAction["UpdatePagination"] = 9] = "UpdatePagination";
     MuiDatatableAction[MuiDatatableAction["SetCurrentPageData"] = 10] = "SetCurrentPageData";
-})(MuiDatatableAction = exports.MuiDatatableAction || (exports.MuiDatatableAction = {}));
+})(MuiDatatableAction || (MuiDatatableAction = {}));

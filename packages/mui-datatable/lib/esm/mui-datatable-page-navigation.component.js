@@ -1,59 +1,52 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MuiDatatablePageNavigation = void 0;
-const KeyboardArrowLeftRounded_1 = __importDefault(require("@mui/icons-material/KeyboardArrowLeftRounded"));
-const KeyboardArrowRightRounded_1 = __importDefault(require("@mui/icons-material/KeyboardArrowRightRounded"));
-const KeyboardDoubleArrowLeftRounded_1 = __importDefault(require("@mui/icons-material/KeyboardDoubleArrowLeftRounded"));
-const KeyboardDoubleArrowRightRounded_1 = __importDefault(require("@mui/icons-material/KeyboardDoubleArrowRightRounded"));
-const material_1 = require("@mui/material");
-const Box_1 = __importDefault(require("@mui/material/Box"));
-const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
-const react_1 = __importDefault(require("react"));
-const use_mui_datatable_hook_1 = require("./use-mui-datatable.hook");
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftRounded';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import React from 'react';
+import { useMuiDatatable } from './use-mui-datatable.hook';
 function FirstPageButton() {
-    const { firstPage, pageMeta } = (0, use_mui_datatable_hook_1.useMuiDatatable)();
-    return (react_1.default.createElement(IconButton_1.default, { disabled: !pageMeta.hasPrevious, onClick: firstPage },
-        react_1.default.createElement(KeyboardDoubleArrowLeftRounded_1.default, null)));
+    const { firstPage, pageMeta } = useMuiDatatable();
+    return (React.createElement(IconButton, { disabled: !pageMeta.hasPrevious, onClick: firstPage },
+        React.createElement(KeyboardDoubleArrowLeftRoundedIcon, null)));
 }
 function PreviousPageButton() {
-    const { previousPage, pageMeta } = (0, use_mui_datatable_hook_1.useMuiDatatable)();
-    return (react_1.default.createElement(IconButton_1.default, { disabled: !pageMeta.hasPrevious, onClick: previousPage },
-        react_1.default.createElement(KeyboardArrowLeftRounded_1.default, null)));
+    const { previousPage, pageMeta } = useMuiDatatable();
+    return (React.createElement(IconButton, { disabled: !pageMeta.hasPrevious, onClick: previousPage },
+        React.createElement(KeyboardArrowLeftRoundedIcon, null)));
 }
 function NextPageButton() {
-    const { nextPage, pageMeta } = (0, use_mui_datatable_hook_1.useMuiDatatable)();
-    return (react_1.default.createElement(IconButton_1.default, { disabled: !pageMeta.hasNext, onClick: nextPage },
-        react_1.default.createElement(KeyboardArrowRightRounded_1.default, null)));
+    const { nextPage, pageMeta } = useMuiDatatable();
+    return (React.createElement(IconButton, { disabled: !pageMeta.hasNext, onClick: nextPage },
+        React.createElement(KeyboardArrowRightRoundedIcon, null)));
 }
 function LastPageButton() {
-    const { lastPage, pageMeta } = (0, use_mui_datatable_hook_1.useMuiDatatable)();
-    return (react_1.default.createElement(IconButton_1.default, { disabled: !pageMeta.hasNext, onClick: lastPage },
-        react_1.default.createElement(KeyboardDoubleArrowRightRounded_1.default, null)));
+    const { lastPage, pageMeta } = useMuiDatatable();
+    return (React.createElement(IconButton, { disabled: !pageMeta.hasNext, onClick: lastPage },
+        React.createElement(KeyboardDoubleArrowRightRoundedIcon, null)));
 }
 function PageInfo() {
-    const { page, pageMeta } = (0, use_mui_datatable_hook_1.useMuiDatatable)();
-    return (react_1.default.createElement(material_1.Typography, { variant: 'body1' },
+    const { page, pageMeta } = useMuiDatatable();
+    return (React.createElement(Typography, { variant: 'body1' },
         "Showing ",
         page.length,
         " / ",
         pageMeta.total,
         " items"));
 }
-function MuiDatatablePageNavigation({ sx, firstPageComponent: FirstPageComponent = FirstPageButton, previousPageComponent: PreviousPageComponent = PreviousPageButton, nextPageComponent: NextPageComponent = NextPageButton, lastPageComponent: LastPageComponent = LastPageButton, pageInfoComponent: PageInfoComponent = PageInfo, }) {
-    const { paginationOptions: { disablePagination }, } = (0, use_mui_datatable_hook_1.useMuiDatatable)();
+export function MuiDatatablePageNavigation({ sx, firstPageComponent: FirstPageComponent = FirstPageButton, previousPageComponent: PreviousPageComponent = PreviousPageButton, nextPageComponent: NextPageComponent = NextPageButton, lastPageComponent: LastPageComponent = LastPageButton, pageInfoComponent: PageInfoComponent = PageInfo, }) {
+    const { paginationOptions: { disablePagination }, } = useMuiDatatable();
     // no need to render the whole element if pagination is
     // disabled for some reason
     if (disablePagination) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+        return React.createElement(React.Fragment, null);
     }
-    return (react_1.default.createElement(Box_1.default, { sx: { display: 'flex', alignItems: 'center', ...sx } },
-        react_1.default.createElement(FirstPageComponent, null),
-        react_1.default.createElement(PreviousPageComponent, null),
-        react_1.default.createElement(PageInfoComponent, null),
-        react_1.default.createElement(NextPageComponent, null),
-        react_1.default.createElement(LastPageComponent, null)));
+    return (React.createElement(Box, { sx: { display: 'flex', alignItems: 'center', ...sx } },
+        React.createElement(FirstPageComponent, null),
+        React.createElement(PreviousPageComponent, null),
+        React.createElement(PageInfoComponent, null),
+        React.createElement(NextPageComponent, null),
+        React.createElement(LastPageComponent, null)));
 }
-exports.MuiDatatablePageNavigation = MuiDatatablePageNavigation;

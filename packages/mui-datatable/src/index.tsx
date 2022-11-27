@@ -35,10 +35,6 @@ export {
   MuiDatatableSearch,
 } from './mui-datatable-search.component';
 export {
-  MuiDatatablePageNavigationProps,
-  MuiDatatablePageNavigation,
-} from './mui-datatable-page-navigation.component';
-export {
-  MuiDatatablePageSizeSelectProps,
-  MuiDatatablePageSizeSelect,
-} from './mui-datatable-page-size-select.component';
+  MuiDatatablePaginationProps,
+  MuiDatatablePagination,
+} from './mui-datatable-pagination.component';

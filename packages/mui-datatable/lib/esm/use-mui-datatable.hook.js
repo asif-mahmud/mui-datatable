@@ -1,16 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useMuiDatatable = void 0;
-const react_1 = require("react");
-const mui_datatable_action_types_1 = require("./mui-datatable.action-types");
-const mui_datatable_context_1 = require("./mui-datatable.context");
-function useMuiDatatable() {
-    const { dispatch, ...rest } = (0, react_1.useContext)(mui_datatable_context_1.MuiDatatableContext);
+import { useContext } from 'react';
+import { MuiDatatableAction } from './mui-datatable.action-types';
+import { MuiDatatableContext } from './mui-datatable.context';
+export function useMuiDatatable() {
+    const { dispatch, ...rest } = useContext(MuiDatatableContext);
     // wrapper for update columns action
     const updateColumns = (columns) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdateColumns,
+                action: MuiDatatableAction.UpdateColumns,
                 payload: {
                     columns,
                 },
@@ -21,7 +18,7 @@ function useMuiDatatable() {
     const updateOriginalData = (data) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdateOriginalData,
+                action: MuiDatatableAction.UpdateOriginalData,
                 payload: {
                     originalData: data,
                 },
@@ -32,7 +29,7 @@ function useMuiDatatable() {
     const updatePreparedData = (data) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePreparedData,
+                action: MuiDatatableAction.UpdatePreparedData,
                 payload: {
                     preparedData: data,
                 },
@@ -43,7 +40,7 @@ function useMuiDatatable() {
     const updateData = (data) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdateData,
+                action: MuiDatatableAction.UpdateData,
                 payload: {
                     data,
                 },
@@ -54,7 +51,7 @@ function useMuiDatatable() {
     const setVisibleColumns = (columns) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.SetVisibleColumns,
+                action: MuiDatatableAction.SetVisibleColumns,
                 payload: { visibleColumns: columns },
             });
         }
@@ -63,7 +60,7 @@ function useMuiDatatable() {
     const setLoading = (loading) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.SetLoading,
+                action: MuiDatatableAction.SetLoading,
                 payload: {
                     loading,
                 },
@@ -74,7 +71,7 @@ function useMuiDatatable() {
     const setSearchTerm = (searchTerm) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.SetSearchTerm,
+                action: MuiDatatableAction.SetSearchTerm,
                 payload: {
                     searchTerm,
                 },
@@ -85,7 +82,7 @@ function useMuiDatatable() {
     const updatePaginationOptions = (options) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePaginationOptions,
+                action: MuiDatatableAction.UpdatePaginationOptions,
                 payload: {
                     paginationOptions: options,
                 },
@@ -96,7 +93,7 @@ function useMuiDatatable() {
     const setPageSize = (pageSize) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination,
+                action: MuiDatatableAction.UpdatePagination,
                 payload: {
                     pageMeta: {
                         pageSize,
@@ -109,7 +106,7 @@ function useMuiDatatable() {
     const setPage = (page) => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination,
+                action: MuiDatatableAction.UpdatePagination,
                 payload: {
                     pageMeta: {
                         cursor: rest.pageMeta.pageSize * page,
@@ -122,7 +119,7 @@ function useMuiDatatable() {
     const nextPage = () => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination,
+                action: MuiDatatableAction.UpdatePagination,
                 payload: {
                     pageMeta: {
                         cursor: rest.pageMeta.cursor +
@@ -136,7 +133,7 @@ function useMuiDatatable() {
     const previousPage = () => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination,
+                action: MuiDatatableAction.UpdatePagination,
                 payload: {
                     pageMeta: {
                         cursor: rest.pageMeta.cursor -
@@ -150,7 +147,7 @@ function useMuiDatatable() {
     const firstPage = () => {
         if (dispatch) {
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination,
+                action: MuiDatatableAction.UpdatePagination,
                 payload: {
                     pageMeta: {
                         cursor: 0,
@@ -164,7 +161,7 @@ function useMuiDatatable() {
         if (dispatch) {
             const pageCount = Math.floor(rest.pageMeta.total / rest.pageMeta.pageSize);
             dispatch({
-                action: mui_datatable_action_types_1.MuiDatatableAction.UpdatePagination,
+                action: MuiDatatableAction.UpdatePagination,
                 payload: {
                     pageMeta: {
                         cursor: pageCount * rest.pageMeta.pageSize,
@@ -191,4 +188,3 @@ function useMuiDatatable() {
         lastPage,
     };
 }
-exports.useMuiDatatable = useMuiDatatable;

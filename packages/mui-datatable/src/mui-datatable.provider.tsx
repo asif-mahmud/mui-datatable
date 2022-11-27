@@ -1,6 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { MuiDatatablePageNavigation } from './mui-datatable-page-navigation.component';
-import { MuiDatatablePageSizeSelect } from './mui-datatable-page-size-select.component';
+import { MuiDatatablePagination } from './mui-datatable-pagination.component';
 import { MuiDatatableProviderProps } from './mui-datatable-provider-props.type';
 import { MuiDatatableSearch } from './mui-datatable-search.component';
 import { MuiDatatableSelectColumns } from './mui-datatable-select-columns.component';
@@ -22,8 +21,7 @@ export const MuiDatatable: FC<PropsWithChildren<MuiDatatableProviderProps>> = ({
           <MuiDatatableSearch />
           <MuiDatatableSelectColumns />
           <MuiDatatableTable />
-          <MuiDatatablePageSizeSelect />
-          <MuiDatatablePageNavigation />
+          <MuiDatatablePagination />
         </>
       )}
     </MuiDatatableContext.Provider>
