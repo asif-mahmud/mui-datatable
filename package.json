@@ -1,34 +1,22 @@
 {
-  "name": "@mui/datatable",
+  "name": "mui-datatable-workspace",
   "version": "0.0.1",
   "description": "Datatable for Material UI",
-  "main": "lib/esm/index.js",
+  "main": "index.js",
   "repository": "https://github.com/asif-mahmud/mui-datatable",
   "author": "Asif Mahmud Shimon",
   "license": "MIT",
   "private": false,
-  "types": "lib/esm/index.d.ts",
+  "workspaces": [
+    "packages/mui-datatable",
+    "examples/demo"
+  ],
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/icons-material": "^5.10.6",
-    "@mui/material": "^5.10.6",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "prettier": "^2.7.1",
-    "typescript": "^4.8.3"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/icons-material": "^5.10.6",
-    "@mui/material": "^5.10.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "turbo": "^1.6.3"
   }
 }

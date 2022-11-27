@@ -1,0 +1,41 @@
+{
+  "name": "mui-datatable",
+  "version": "0.0.1",
+  "author": "Asif Mahmud Shimon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asif-mahmud/mui-datatable/issues"
+  },
+  "homepage": "https://github.com/asif-mahmud/mui-datatable#readme",
+  "description": "Datatable framework for Material UI",
+  "main": "lib/esm/index.js",
+  "types": "lib/esm/index.d.ts",
+  "scripts": {
+    "build:dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asif-mahmud/mui-datatable.git"
+  },
+  "keywords": [
+    "MUI",
+    "Datatable",
+    "Material UI",
+    "Material UI Datatable"
+  ],
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.10.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "prettier": "^2.8.0",
+    "typescript": "^4.9.3"
+  }
+}
